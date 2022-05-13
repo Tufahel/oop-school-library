@@ -1,6 +1,5 @@
 require_relative('./nameable')
-require_relative('./capitalize_decorator')
-require_relative('./trimmer_decorator')
+require_relative('./rental')
 
 class Person < Nameable
   attr_accessor :name, :age
@@ -26,5 +25,9 @@ class Person < Nameable
     @name
   end
 
+  def add_rental(book, date)
+    Rental.new(book, date, self)
+  end
+  
   private :of_age?
 end
