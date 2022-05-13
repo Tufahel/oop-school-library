@@ -12,7 +12,7 @@
 ## Getting Started
 
 - Clone this repo `https://github.com/Tufahel/oop-school-library.git`
-- Use command `cd enumarable` and have fun.
+- Use command `cd oop-school-library` and have fun.
 
 ## Authors
 
