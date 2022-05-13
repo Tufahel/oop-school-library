@@ -1,6 +1,6 @@
 require_relative('./nameable')
-require_relative('./capitalizedecorator')
-require_relative('./trimmerdecorator')
+require_relative('./capitalize_decorator')
+require_relative('./trimmer_decorator')
 
 class Person < Nameable
   attr_accessor :name, :age
