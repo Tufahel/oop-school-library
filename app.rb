@@ -24,4 +24,16 @@ class App
             option input
         end
     end
+
+    def list_all_books
+    end
+
+    def list_all_persons
+    end
+
+    def create_person
+    end
+
+    def create_student
+    end
 end
