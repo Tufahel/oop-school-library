@@ -36,8 +36,36 @@ class App
     end
 
     def create_person
+        print 'To create a student, press 1, to create a teacher, press 2 :'
+        option = gets.chomp
+
+        case option
+        when '1'
+            create_student
+        when '2'
+            create_teacher
+        else
+            puts 'Invalid input, Try again'
+        end
     end
 
     def create_student
+        puts 'Create a new student'
+        print 'Enter student age: '
+        age = gets.chomp.to_i
+        print 'Enter name: '
+        name = gets.chomp
+        print 'Has parent permission? [Y/N]'
+        parent_permission = gets.chomp.downcase
+        case parent_permission
+        when 'n'
+            Student.new('classroom', age, name, parent_permission: false)
+            @person << student
+            puts 'Student doesnt have parent permission, cant rent books'
+        when 'y'
+            student = Student.new('classroom', age, name, parent_permission: true)
+            @person << student
+            puts 'Student created successfully'
+        end
     end
 end
