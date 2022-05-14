@@ -11,6 +11,7 @@ class Person < Nameable
     @name = name
     @age = age
     @parent_permission = parent_permission
+    @rental = []
   end
 
   def of_age?
@@ -26,7 +27,7 @@ class Person < Nameable
   end
 
   def add_rental(book, date)
-    Rental.new(book, date, self)
+    Rental.new(date, book, self)
   end
 
   private :of_age?

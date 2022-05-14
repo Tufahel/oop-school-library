@@ -36,7 +36,7 @@ class App
     end
 
     def create_person
-        print 'To create a student, press 1, to create a teacher, press 2 :'
+        print 'To create a student, press 1, to create a teacher, press 2 : '
         option = gets.chomp
 
         case option
@@ -55,18 +55,31 @@ class App
         age = gets.chomp.to_i
         print 'Enter name: '
         name = gets.chomp
-        print 'Has parent permission? [Y/N]'
+        print 'Has parent permission? [Y/N]: '
         parent_permission = gets.chomp.downcase
         case parent_permission
         when 'n'
-            Student.new('classroom', age, name, parent_permission: false)
-            @person << student
-            puts 'Student doesnt have parent permission, cant rent books'
+          student = Student.new('classroom',age, name, parent_permission: false)
+          @persons << student
+          puts 'Student doesnt have parent permission, cant rent books'
         when 'y'
-            student = Student.new('classroom', age, name, parent_permission: true)
-            @person << student
-            puts 'Student created successfully'
+          student = Student.new('classroom', age, name, parent_permission: true)
+          @persons << student
+          puts 'Student created successfully'
         end
+    end
+
+    def create_teacher
+        puts 'Create a new teacher'
+        print 'Enter teacher age'
+        age = gets.chomp.to_i
+        print 'Enter teacher name'
+        name = gets.chomp
+        print 'Enter teacher specialization'
+        specialization = gets.chomp
+        teacher = Teacher.new(specialization, age, name)
+        @persons << teacher
+        puts 'Teacher created successfully'
     end
 
     def create_book()
@@ -82,7 +95,7 @@ class App
 
     def create_rental
         puts 'Select which book you want to rent by entering its number'
-        @books.each_with_index { |book, index| puts "#{index}) Title: #{book.title}, Author: #{author.title}" }
+        @books.each_with_index { |book, index| puts "#{index}) Title: #{book.title}, Author: #{book.author}" }
         
         book_id = gets.chomp.to_i
 
