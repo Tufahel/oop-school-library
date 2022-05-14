@@ -68,4 +68,15 @@ class App
             puts 'Student created successfully'
         end
     end
+
+    def create_book()
+        puts 'Create a new book'
+        print 'Enter title: '
+        title = gets.chomp
+        print 'Enter author: '
+        author = gets
+        book = Book.new(title, author)
+        @books.push(book)
+        puts "Book #{title} created successfully."
+    end
 end
