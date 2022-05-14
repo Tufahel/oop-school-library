@@ -31,6 +31,8 @@ class App
     end
 
     def list_all_persons
+        puts 'Database is empty! Add a person.' if @persons.empty?
+        @persons.each { |person| puts "[#{person.class.name}] Name: #{person.name}, Age: #{person.age}, Id: #{person.id}"}
     end
 
     def create_person
