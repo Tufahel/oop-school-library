@@ -48,17 +48,19 @@ class App < StartApp
 
     case option
     when '1'
-      create_student(age, name)
+      print 'Has parent permission? [Y/N]: '
+      parent_permission = gets.chomp.downcase
+      create_student(age, name, parent_permission)
     when '2'
-      create_teacher(age, name)
+      print 'Enter teacher specialization: '
+      specialization = gets.chomp
+      create_teacher(age, name, specialization)
     else
       puts 'Invalid input, Try again'
     end
   end
 
-  def create_student(age, name)
-    print 'Has parent permission? [Y/N]: '
-    parent_permission = gets.chomp.downcase
+  def create_student(age, name, parent_permission)
     case parent_permission
     when 'n'
       student = Student.new('classroom', age, name, parent_permission: false)
@@ -71,9 +73,7 @@ class App < StartApp
     end
   end
 
-  def create_teacher(age, name)
-    print 'Enter teacher specialization: '
-    specialization = gets.chomp
+  def create_teacher(age, name, specialization)
     teacher = Teacher.new(specialization, age, name)
     @persons << teacher
     puts 'Teacher created successfully'
@@ -96,7 +96,7 @@ class App < StartApp
     book_id = gets.chomp.to_i
 
     puts 'Select a person from the list by its number'
-    @persons.each_with_index { |person, index| puts "#{index}) [#{person.class.name}] Name: #{person.name}, ID: #{person.id} Age: #{person.age}" }
+    @persons.each_with_index { |pr, i| puts "#{i}) [#{pr.class.name}] Name: #{pr.name}, ID: #{pr.id} Age: #{pr.age}" }
     person_id = gets.chomp.to_i
 
     print 'Date: '
