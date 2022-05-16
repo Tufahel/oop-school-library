@@ -27,23 +27,36 @@ class App < StartApp
   def create_person
     print 'To create a student, press 1, to create a teacher, press 2 : '
     option = gets.chomp
+    option_type = ' '
 
     case option
     when '1'
-      create_student
+      option_type = 'student'
     when '2'
-      create_teacher
+      option_type = 'teacher'
+    end
+
+    create_common_input(option_type, option)
+  end
+
+  def create_common_input(option_type, option)
+    puts "Create a new #{option_type}"
+    print "Enter #{option_type} age: "
+    age = gets.chomp.to_i
+    print "Enter #{option_type} name: "
+    name = gets.chomp
+
+    case option
+    when '1'
+      create_student(age, name)
+    when '2'
+      create_teacher(age, name)
     else
       puts 'Invalid input, Try again'
     end
   end
 
-  def create_student
-    puts 'Create a new student'
-    print 'Enter student age: '
-    age = gets.chomp.to_i
-    print 'Enter name: '
-    name = gets.chomp
+  def create_student(age, name)
     print 'Has parent permission? [Y/N]: '
     parent_permission = gets.chomp.downcase
     case parent_permission
@@ -58,12 +71,7 @@ class App < StartApp
     end
   end
 
-  def create_teacher
-    puts 'Create a new teacher'
-    print 'Enter teacher age: '
-    age = gets.chomp.to_i
-    print 'Enter teacher name: '
-    name = gets.chomp
+  def create_teacher(age, name)
     print 'Enter teacher specialization: '
     specialization = gets.chomp
     teacher = Teacher.new(specialization, age, name)
