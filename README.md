@@ -22,6 +22,12 @@
 - Twitter: [@TufahelAhmed](https://twitter.com/TufahelAhmed)
 - LinkedIn: [@Tufahel-Ahmed](https://www.linkedin.com/in/tufahel-ahmed/)
 
+👤 **Candy Inga Cynthia**
+
+- GitHub: [@cynthiainga](https://github.com/cynthiainga)
+- Twitter: [@CynthiaInga_C](https://twitter.com/CynthiaInga_C)
+- LinkedIn: [Cynthia Inga](https://www.linkedin.com/in/cynthia-inga/)
+
 
 ## 🤝 Contributing
 
