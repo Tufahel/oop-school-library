@@ -4,10 +4,11 @@ require_relative './student'
 require_relative './classroom'
 require_relative './book'
 require_relative './rental'
-require_relative './start_app.rb'
+require_relative './start_app'
 
 class App < StartApp
   def initialize
+    super()
     @books = []
     @persons = []
     @rentals = []

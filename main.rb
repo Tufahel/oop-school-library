@@ -16,7 +16,7 @@ def list_of_options
   puts '6 - List all rentals for a given person id'
   puts '7 - Exit'
 end
-  
+
 def option(input)
   case input
   when '1'
