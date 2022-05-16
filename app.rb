@@ -14,32 +14,7 @@ class App < StartApp
     @rentals = []
   end
 
-  def list_all_books
-    puts 'Database is empty! Add a book.' if @books.empty?
-    @books.each { |book| puts "[Book] Title: #{book.title}, Author: #{book.author}" }
-  end
-
-  def list_all_persons
-    puts 'Database is empty! Add a person.' if @persons.empty?
-    @persons.each { |person| puts "[#{person.class.name}] Name: #{person.name}, Age: #{person.age}, Id: #{person.id}" }
-  end
-
-  def create_person
-    print 'To create a student, press 1, to create a teacher, press 2 : '
-    option = gets.chomp
-    option_type = ' '
-
-    case option
-    when '1'
-      option_type = 'student'
-    when '2'
-      option_type = 'teacher'
-    end
-
-    create_common_input(option_type, option)
-  end
-
-  def create_common_input(option_type, option)
+  def input_student_teacher(option_type, option)
     puts "Create a new #{option_type}"
     print "Enter #{option_type} age: "
     age = gets.chomp.to_i
@@ -58,6 +33,45 @@ class App < StartApp
     else
       puts 'Invalid input, Try again'
     end
+  end
+
+  def input_book
+    puts 'Create a new book'
+    print 'Enter title: '
+    title = gets.chomp
+    print 'Enter author: '
+    author = gets
+    create_book(title, author)
+  end
+
+  def fetch_rental
+    puts 'Select which book you want to rent by entering its number'
+    @books.each_with_index { |book, index| puts "#{index}) Title: #{book.title}, Author: #{book.author}" }
+    book_id = gets.chomp.to_i
+
+    puts 'Select a person from the list by its number'
+    @persons.each_with_index { |pr, i| puts "#{i}) [#{pr.class.name}] Name: #{pr.name}, ID: #{pr.id} Age: #{pr.age}" }
+    person_id = gets.chomp.to_i
+
+    print 'Date: '
+    date = gets.chomp.to_s
+
+    create_rental(date, @books[book_id], @persons[person_id])
+  end
+
+  def create_person
+    print 'To create a student, press 1, to create a teacher, press 2 : '
+    option = gets.chomp
+    option_type = ' '
+
+    case option
+    when '1'
+      option_type = 'student'
+    when '2'
+      option_type = 'teacher'
+    end
+
+    input_student_teacher(option_type, option)
   end
 
   def create_student(age, name, parent_permission)
@@ -79,33 +93,26 @@ class App < StartApp
     puts 'Teacher created successfully'
   end
 
-  def create_book()
-    puts 'Create a new book'
-    print 'Enter title: '
-    title = gets.chomp
-    print 'Enter author: '
-    author = gets
+  def create_book(title, author)
     book = Book.new(title, author)
     @books.push(book)
     puts "Book #{title} created successfully."
   end
 
-  def create_rental
-    puts 'Select which book you want to rent by entering its number'
-    @books.each_with_index { |book, index| puts "#{index}) Title: #{book.title}, Author: #{book.author}" }
-    book_id = gets.chomp.to_i
-
-    puts 'Select a person from the list by its number'
-    @persons.each_with_index { |pr, i| puts "#{i}) [#{pr.class.name}] Name: #{pr.name}, ID: #{pr.id} Age: #{pr.age}" }
-    person_id = gets.chomp.to_i
-
-    print 'Date: '
-    date = gets.chomp.to_s
-
-    rental = Rental.new(date, @books[book_id], @persons[person_id])
+  def create_rental(date, id_book, id_person)
+    rental = Rental.new(date, id_book, id_person)
     @rentals << rental
-
     puts 'Rental created successfully'
+  end
+
+  def list_all_books
+    puts 'Database is empty! Add a book.' if @books.empty?
+    @books.each { |book| puts "[Book] Title: #{book.title}, Author: #{book.author}" }
+  end
+
+  def list_all_persons
+    puts 'Database is empty! Add a person.' if @persons.empty?
+    @persons.each { |person| puts "[#{person.class.name}] Name: #{person.name}, Age: #{person.age}, Id: #{person.id}" }
   end
 
   def list_all_rentals
